@@ -29,7 +29,7 @@ def main(url):
             elif method == "post":
                 print("\nPOST: -> ", end=" ")
                 s += "\n\nPOST: -> "
-                r = requests.post(url, data=given, timeout=5)
+                r = requests.post(url, json=given, timeout=5)
 
             if r.status_code == 404:
                 log["404"][url] = method + "  "+" not found"
