@@ -68,3 +68,5 @@ http://www.kiise.or.kr/conference02/cf04/notice.asp?no=116
   그리고, pull request history 는 점수산정의 한 요소가 됩니다.
   
   * 4~5개 항목으로 날자와 마일스톤 정리해 주세요.  하드웨어 작동테스트 라든지 등 항목.  demo day는 (잠정) 6월8일입니다 
+  
+  
