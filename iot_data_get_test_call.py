@@ -4,7 +4,7 @@ import json
 expected = {'device_id', 'status', 'time'}
 
 #pur your url here
-#lines = ['http://ec2-3-21-37-105.us-east-2.compute.amazonaws.com:8000/input?device_id=99&temperature_value=29.99&sequence_number=456']
+#lines = ['http://..../....]
 lines = ""
 
 if lines == "":
