@@ -14,7 +14,7 @@ HardwareSerial dust(2);  //(통신속도, UART모드, RX핀번호 16, TX핀번�
 const char* ssid     = "산학WiFi_208_2.4G";
 const char* password = "";
 const char* host = "api.thingspeak.com";
-String url = "/update?api_key=UGO0NIS0OJ75CVR0&field1=";
+String url = "/update?api_key=your_key&field1=";
 static unsigned long mark;
 
 void send(float temp) {
