@@ -21,9 +21,16 @@ void loop() {
       digitalWrite(led[k], 1);
       delay(300);
       digitalWrite(led[k], 0);
+    }
+  
+  for (int i=0; i<10; i++) 
+    for (int k=0; k<3; k++) {
+      digitalWrite(led[k], 1);
+      delay(300);
+      digitalWrite(led[k], 0);
       delay(300);
     }
-    
+
   for (int i=0; i<10; i++) 
     for (int k=0; k<3; k++) {
       digitalWrite(led[k], 1);
