@@ -5,11 +5,16 @@ OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 DeviceAddress insideThermometer;
 
+//#define DUST
+#ifdef DUST
+HardwareSerial dust(2);  //(통신속도, UART모드, RX핀번호 16, TX핀번호 17)
+#endif
+
 #include <WiFi.h>
 const char* ssid     = "산학WiFi_208_2.4G";
 const char* password = "";
 const char* host = "api.thingspeak.com";
-String url = "/update?api_key=your_key&field1=";
+String url = "/update?api_key=UGO0NIS0OJ75CVR0&field1=";
 static unsigned long mark;
 
 void send(float temp) {
@@ -44,25 +49,27 @@ void send(float temp) {
 }
 
 void ticker() {
-  sensors.requestTemperatures();
-  float tempC = sensors.getTempC(insideThermometer);
-  Serial.print(tempC);
-  send(tempC);
+	sensors.requestTemperatures();
+	float tempC = sensors.getTempC(insideThermometer);
+	Serial.print(tempC);
+	send(tempC);
 }
 
 void setup() {
-  Serial.begin(115200);
-  dust.begin(9600);
-  sensors.begin();
-  Serial.print("Found ");
-  Serial.print(sensors.getDeviceCount(), DEC);
-  Serial.print("Device 0 Resolution: ");
-  Serial.print(sensors.getResolution(insideThermometer), DEC); 
-  Serial.println();
-  if (!sensors.getAddress(insideThermometer, 0)) 
-    Serial.println("Unable to find address for Device 0"); 
+	Serial.begin(115200);
+#ifdef DUST
+	dust.begin(9600);
+#endif
+	sensors.begin();
+	Serial.print("Found ");
+	Serial.print(sensors.getDeviceCount(), DEC);
+	Serial.print("Device 0 Resolution: ");
+	Serial.print(sensors.getResolution(insideThermometer), DEC); 
+	Serial.println();
+	if (!sensors.getAddress(insideThermometer, 0)) 
+		Serial.println("Unable to find address for Device 0"); 
 
-  WiFi.begin(ssid, password);
+	WiFi.begin(ssid, password);
     while (WiFi.status() != WL_CONNECTED) {
         delay(500);
         Serial.print(".");
@@ -78,6 +85,13 @@ void setup() {
 void loop() {
     if (millis() > mark) {
         mark = millis() + 20000;
-    ticker();
-  }
+        ticker();
+    }
+#ifdef DUST
+    while (dust.available()) {
+		char a = dust.read();
+		if (a == 0x42) Serial.println();
+		Serial.printf(" %02X", a);
+	} 
+#endif
 }
