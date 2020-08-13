@@ -16,10 +16,34 @@ void setup() {
 void loop() {
   static int j=30;
   // put your main code here, to run repeatedly:
-  for (int k=0; k<3; k++) {
-    digitalWrite(led[k], 1);
-    delay(50);
-    digitalWrite(led[k], 0);
-    delay(100);
+  for (int i=0; i<3; i++) 
+    for (int k=0; k<3; k++) {
+      digitalWrite(led[k], 1);
+      delay(30);
+      digitalWrite(led[k], 0);
+      delay(300);
+    }
+
+  for (int i=0; i<3; i++) {
+    for (int k=0; k<3; k++) {
+      digitalWrite(led[k], 1);
+      delay(100);
+    }
+    delay(500);
+    for (int k=2; k>=0; k--) {
+      digitalWrite(led[k], 0);
+      delay(300);
+    }
+  }
+
+  for (int i=0; i<3; i++) {
+    for (int k=0; k<3; k++) {
+      digitalWrite(led[k], 1);
+    }
+    delay(500);
+    for (int k=0; k<3; k++) {
+      digitalWrite(led[k], 0);
+    }
+    delay(200);
   }
 }
