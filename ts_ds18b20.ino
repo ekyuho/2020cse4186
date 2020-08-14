@@ -7,7 +7,7 @@ DeviceAddress insideThermometer;
 
 //#define DUST
 #ifdef DUST
-HardwareSerial dust(1);  //(통신속도, UART모드, RX핀번호 16, TX핀번호 17)
+HardwareSerial dust(1);  //(통신속도, UART모드, RX핀번호 5)
 #endif
 
 #include <WiFi.h>
