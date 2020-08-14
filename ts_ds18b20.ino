@@ -1,13 +1,13 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
-#define ONE_WIRE_BUS 23
+#define ONE_WIRE_BUS 19
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 DeviceAddress insideThermometer;
 
 //#define DUST
 #ifdef DUST
-HardwareSerial dust(2);  //(통신속도, UART모드, RX핀번호 16, TX핀번호 17)
+HardwareSerial dust(1);  //(통신속도, UART모드, RX핀번호 16, TX핀번호 17)
 #endif
 
 #include <WiFi.h>
@@ -58,7 +58,7 @@ void ticker() {
 void setup() {
 	Serial.begin(115200);
 #ifdef DUST
-	dust.begin(9600);
+	dust.begin(9600, SERIAL_8N1, 5, 4);
 #endif
 	sensors.begin();
 	Serial.print("Found ");
